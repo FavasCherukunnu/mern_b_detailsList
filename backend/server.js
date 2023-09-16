@@ -2,10 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose')
 var cors = require('cors');
 const user = require('./models')
+const dotenv = require('dotenv').config()
 
-const PORT = 3002;
+const PORT = process.env.PORT;
 const app = express();
-mongoose.connect('mongodb://127.0.0.1:27017/testing').then((res)=>{console.log('connected to mongodb');}).then((res)=>{
+mongoose.connect(process.env.DB_PATH).then((res)=>{console.log('connected to mongodb');}).then((res)=>{
     app.listen(PORT, () => { console.log(`listening to port ${PORT}`); })
 })
 
