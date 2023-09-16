@@ -3,6 +3,7 @@ import './App.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { ListItem } from './component';
+import { backEndUrl } from './staticFiles';
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
     e.preventDefault();
     // axios.get('http://localhost:3002/add').then((res)=>{console.log(res);})
     try {
-      const res = await axios({ url: 'http://localhost:3002/add', method: 'POST', data: formData });
+      const res = await axios({ url: `${backEndUrl}/add`, method: 'POST', data: formData });
       setFormData({ fullName: '', fatherName: '', age: '' })
       setToggleSubmit(!togglesubmit)
     } catch (err) {

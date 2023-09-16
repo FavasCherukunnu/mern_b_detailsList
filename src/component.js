@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState,useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import { UpdatePage } from './page/UpdatePage';
+import { backEndUrl } from './staticFiles';
 
 export function ListItem(props) {
 
@@ -10,7 +11,7 @@ export function ListItem(props) {
     console.log('rebuilding listItem');    
     useEffect(
         ()=>{
-            axios.get('http://localhost:3002/').then(
+            axios.get(backEndUrl).then(
                 (res)=>{
                     setData(res.data);
                 },
@@ -19,8 +20,8 @@ export function ListItem(props) {
     )
 
     function handleDelete(item){
-        axios.delete(`http://localhost:3002/${item._id}`).then((res)=>{
-            axios.get('http://localhost:3002/').then(
+        axios.delete(`${backEndUrl}/${item._id}`).then((res)=>{
+            axios.get(backEndUrl).then(
                 (res)=>{
                     setData(res.data);
                 },

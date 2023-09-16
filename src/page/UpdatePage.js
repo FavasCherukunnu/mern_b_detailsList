@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import { backEndUrl } from '../staticFiles';
 
 export function UpdatePage() {
     const [formData,setFormData] = useState({_id:'',fullName:'',fatherName:''});
@@ -9,7 +10,7 @@ export function UpdatePage() {
     const navigate = useNavigate();
     useEffect(
         ()=>{
-            axios.get(`http://localhost:3002/${id}`).then(
+            axios.get(`${backEndUrl}/${id}`).then(
                 (res)=>{
                     console.log('rebuilding');
                     setFormData(res.data);
@@ -21,7 +22,7 @@ export function UpdatePage() {
   const onClickHandler = (e)=>{
     e.preventDefault();
     console.log(`http://localhost:3002/${formData._id}`);
-    axios.put(`http://localhost:3002/${formData._id}`,formData).then((res)=>{
+    axios.put(`${backEndUrl}/${formData._id}`,formData).then((res)=>{
       console.log(res);
       navigate('/');
     })
